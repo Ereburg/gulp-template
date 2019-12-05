@@ -18,11 +18,11 @@ All output files already are compressed, prefixed, minified and renamed.
 6. Task `scripts` consists of 2 tasks: 
 * `scripts-libs` **for libraries**, that contains in `app/scripts/libs` folder where you can put your .js libraries, that compiles your custom js to `build/scripts/libs.min.js`
 * `scripts-main` that compiles your **custom** .js to `build/scripts/scripts.min.js`.
-7. Task `style` converts Sass/SCSS files `*.{scss,sass}` to `build/styles/*.min.css`. 
+7. Task `style` converts Sass/SCSS files `*.{scss,sass}` to `build/styles/*.min.css`. By default **PurgeCSS** is off, you can change it in `styles.js: WhiteListsPatterns` by uncommenting it.
 8. Task `images` starts up **after** all necessary files are putted into `./app/images/` folder. This task consists of several sub-tasks:
 - `img:responsive` - create `responsive` folder with 2 subfolders: `@1x` and `@2x`, then converts the original images with 50% and 100% of original width and then puts files to its' paths. 
-> it means that you should use pictures that are **already have** retina sizes or **2x resolution**.
-- After that `tiny` task compress all image .png/.jpg/.jpeg types and moves them to `./build/images/`;
+> it means that you should use pictures that are **already have** retina sizes or **2x resolution**. Or simply put your optimized images into `responsive` folder.
+- After that `tiny` task compress all image .png/.jpg/.jpeg types and replace them to `./build/images/`;
 - `webp` task converts to .webp format all files in `./build/images/` and puts them into the same folder;
 - `sprite` task works with `sp-*.svg` files in `./app/images/sprite` folder and compiles them into one file - `sprite.svg` and puts it in `./build/images/`;
 - `svg:remove` task simply replace all non-`sp-*.svg` files to the `./build/images/`;

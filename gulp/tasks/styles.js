@@ -1,6 +1,6 @@
 module.exports = function () {
     $.gulp.task('styles', () => {
-        return $.gulp.src('./app/sass/*.{scss,sass}')
+        return $.gulp.src('./app/scss/*.{scss,sass}')
             .pipe($.plugins.sourcemaps.init()) // инициализируем карту для стилевых файлов
             .pipe($.plugins.sass({
                 errorLogToConsole: true, // ошибки
