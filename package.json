@@ -8,8 +8,8 @@
     "url": "https//github.com/Ereburg/templateHTML5"
   },
   "scripts": {
-    "style:lint": "stylelint 'app/sass/**/*.scss' --syntax scss",
-    "style:fix": "stylelint 'app/sass/**/*.scss' --syntax scss --fix",
+    "style:lint": "stylelint 'app/sсss/**/*.scss' --syntax scss",
+    "style:fix": "stylelint 'app/sсss/**/*.scss' --syntax scss --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [

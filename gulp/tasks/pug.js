@@ -1,12 +1,12 @@
 module.exports = function () {
     $.gulp.task('pug', () => {
-        return $.gulp.src('./app/pug/*.pug')
+        return $.gulp.src('./app/pug/*.pug') // отслеживаем
             .pipe($.plugins.pug({
                 pretty: true
             }))
-            .pipe($.plugins.htmlmin({
+            .pipe($.plugins.htmlmin({ // сжимаем выходной файл
                 collapseWhitespace: true
             }))
-            .pipe($.gulp.dest('./build'));
+            .pipe($.gulp.dest('./build')); // кидаем
     });
 }; 

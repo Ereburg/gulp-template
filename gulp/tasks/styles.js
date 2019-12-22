@@ -3,21 +3,21 @@ module.exports = function () {
         return $.gulp.src('./app/scss/*.{scss,sass}')
             .pipe($.plugins.sourcemaps.init()) // инициализируем карту для стилевых файлов
             .pipe($.plugins.sass({
-                errorLogToConsole: true, // ошибки
-                outputStyle: "compressed" // сжимаем выходной стилевой файл
+                errorLogToConsole: true, // ошибки выводим в консоль
+                outputStyle: "compressed" // сжатие css
             }))
             .on('error', console.error.bind(console))
-            .pipe($.plugins.purgecss({
-                content: ['./build/**/*.html'],
-                // whitelistPatterns: [/show$/, /mobile$/] // здесь указываешь список селекторов, которые содержат значение
-            })) // а этот плагин удаляет ненужные селекторы, если их нет в html файлах отслеживаемой директории
-            .pipe($.plugins.autoprefixer({
+            .pipe($.plugins.purgecss({ // плагин, который очищает неиспользуемые селекторы, внимательнее с динамичесскими классами
+                content: ['./build/**/*.html'], // отслеживаемая директория
+                whitelistPatterns: [/show$/, /mobile/, /active/, /hidden/] // здесь указываешь динамически добавляемые селекторы
+            })) 
+            .pipe($.plugins.autoprefixer({ // прописываем вендорные префиксы
                 cascade: true
-            })) // прописываем вендорные префиксы
+            })) 
             .pipe($.plugins.csso()) // минифицируем стилевой файл
             .pipe($.plugins.rename({ suffix: '.min' })) // переименовываем
             .pipe($.plugins.sourcemaps.write('./')) // записываем карту
             .pipe($.gulp.dest('./build/styles')) // кидаем в директорию сервера
-            .pipe($.bs.stream()); // сервер не перезагружается, но изменения вносит 
+            .pipe($.bs.stream()); // мягкая перезагрузка сервера, без обновления страницы 
     });
 };

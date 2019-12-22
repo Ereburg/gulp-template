@@ -1,28 +1,29 @@
 module.exports = function () {
-  $.gulp.task("tiny", () => {
+  $.gulp.task("tiny", () => { // задача для изображений, но за раз отрабатывает не более 10 изображений
     return $.gulp.src("./app/images/responsive/**/*.{png,jpg,jpeg}")
       .pipe($.plugins.tinypngWeb({ verbose: true }))
       .pipe($.gulp.dest("./build/images/"));
   });
 
-  $.gulp.task("webp", () => {
+  $.gulp.task("webp", () => { // ограничений нет, но обрати внимание на директорию
     return $.gulp.src("./build/images/**/*.{png,jpg,jpeg}")
       .pipe($.plugins.webp({ quality: 80 }))
       .pipe($.gulp.dest("./build/images/"));
   });
 
-  $.gulp.task("sprite", () => {
+  $.gulp.task("sprite", () => { // удобнейшая штукаб рекомендую
     return $.gulp.src("./app/images/sprite/sp-*.svg")
       .pipe($.plugins.svgstore())
       .pipe($.plugins.rename("sprite.svg"))
       .pipe($.gulp.dest("./build/images/"));
   });
 
-  $.gulp.task("svg:remove", () => {
+  $.gulp.task("svg:remove", () => { // перетаскиваем остальные неиспользуемые svg 
     return $.gulp.src("./app/images/**/*.svg")
       .pipe($.gulp.dest("./build/images/"));
   });
   
+  // Удобно, но использовать только на изображениях с наивысшим качеством
   // Responsive Images
   const quality = 80; // Responsive images quality
 
